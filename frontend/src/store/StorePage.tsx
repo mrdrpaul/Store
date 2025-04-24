@@ -1,48 +1,25 @@
+import InventoryTable from "./InventoryTable";
+import {useState} from "react";
+import {Product} from "./StoreProductType";
+
 export const StorePage = ({}) =>{
-    const inventory=[
-        {
-            "name": "tomato",
-            "quantity":30,
-            "price":`$${2.32}`,
-            "description":"for throwing"
-        },
-        {
-            "name": "soap",
-            "quantity":24,
-            "price":`$${1.79}`,
-            "description":"for cleaning"
-        },
-        {
-            "name": "bacon",
-            "quantity":300,
-            "price":`$${6.78}`,
-            "description":"for eating"
-        },
-    ]
-    return (
-        <>
-        <h1>Generic Store Inventory Management</h1>
-            <table className={"inventory"} style={{border:"2px solid black"}}>
-                <thead>
-                    <tr>
-                        <th>Product Name</th>
-                        <th>Onhand Quantity</th>
-                        <th>Price</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {inventory.map((item, i)=>
-                    <tr key={i}>
-                        <td>{item.name}</td>
-                        <td>{item.quantity}</td>
-                        <td>{item.price}</td>
-                        <td>{item.description}</td>
-                    </tr>
-                )}
-                </tbody>
-            </table>
-        </>
-    )
+    const [newProduct, setNewProduct] = useState<Omit<Product,"id">>({
+        name: "",
+        quantity: 0,
+        price: 0,
+        description:""
+    })
+return(
+    <>
+        <form>
+            <input type={"text"} name={"Name"} placeholder={"product name"} required/>
+            <input type={"number"} name={"Price"} placeholder={"product price"} required/>
+            <input type={"text"} name={"Description"} placeholder={"product description"} required/>
+            <button type="submit">Add Product</button>
+
+        </form>
+    <InventoryTable/>
+    </>
+)
 }
 export default StorePage

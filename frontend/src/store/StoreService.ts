@@ -1,4 +1,4 @@
-import {Product} from "./StoreProductType";
+import {Product} from "./StoreProductType.ts";
 
 export function fetchProducts():Promise<Product[]> {
     const mockedProducts: Product[] = [
@@ -24,4 +24,7 @@ export function fetchProducts():Promise<Product[]> {
             "description":"for eating"
         },
     ]
+
+    return Promise.resolve(mockedProducts);
+
 }
